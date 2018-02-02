@@ -29,5 +29,11 @@ RUN \
   tesseract-ocr-deu \
   tesseract-ocr-eng 
 
+RUN \
+  apt-get install curl \
+  && curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 \
+  > "/usr/local/bin/cc-test-reporter" \
+  && chmod +x "/usr/local/bin/cc-test-reporter"
+
 CMD ["python3"]
 
