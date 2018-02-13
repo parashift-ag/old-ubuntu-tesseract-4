@@ -6,6 +6,7 @@ ENV LANG C.UTF-8
 ENV LC_ALL C.UTF-8 
 ENV PYTHONIOENCODING utf-8   
 
+
 RUN \
     apt-get update -y \
     && apt-get install -y \
@@ -21,13 +22,15 @@ RUN \
     python3-pip 
 
 RUN \
-  apt-get install -y software-properties-common \
-  && add-apt-repository -y ppa:alex-p/tesseract-ocr \
-  && apt-get update \
-  && apt-get install -y \
-  tesseract-ocr \
-  tesseract-ocr-deu \
-  tesseract-ocr-eng 
+    apt-get install -y software-properties-common \
+    && add-apt-repository -y ppa:alex-p/tesseract-ocr \
+    && apt-get update \
+    && apt-get install -y \
+    libtesseract-dev \
+    libleptonica-dev \
+    tesseract-ocr \
+    tesseract-ocr-deu \
+    tesseract-ocr-eng 
 
 RUN \
   apt-get install -y curl \
@@ -37,4 +40,3 @@ RUN \
   && chmod +x "/usr/local/bin/cc-test-reporter"
 
 CMD ["python3"]
-
