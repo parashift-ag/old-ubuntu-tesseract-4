@@ -40,3 +40,4 @@ RUN \
   && chmod +x "/usr/local/bin/cc-test-reporter"
 
 CMD ["python3"]
+
