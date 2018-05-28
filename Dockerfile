@@ -5,7 +5,8 @@ LABEL author="seo.cahill@parashift.io"
 ENV LANG C.UTF-8  
 ENV LC_ALL C.UTF-8 
 ENV PYTHONIOENCODING utf-8   
-
+ENV PYTHON_VERSION=3.5.2
+ENV PYTHON_MAJOR=3.5
 
 RUN \
     apt-get update -y \
