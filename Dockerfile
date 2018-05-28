@@ -1,4 +1,4 @@
-FROM ubuntu:latest
+FROM ubuntu:xenial
 
 LABEL author="seo.cahill@parashift.io"
 
@@ -11,11 +11,13 @@ RUN \
     apt-get update -y \
     && apt-get install -y \
     build-essential \
+    git \
     ghostscript \
     imagemagick \
     libfile-mimeinfo-perl \
     libglib2.0.0 \
     mime-support \
+    openssh-client \
     poppler-utils \
     python3 \
     python3-dev \
@@ -30,7 +32,17 @@ RUN \
     libleptonica-dev \
     tesseract-ocr \
     tesseract-ocr-deu \
-    tesseract-ocr-eng 
+    tesseract-ocr-eng \
+    && pip3 install pip --upgrade \ 
+    && git clone https://github.com/sirfz/tesserocr.git \
+    && cd tesserocr \
+    && pip install . \
+    && cd .. \
+    && rm -rf tesserocr
+
+ADD https://github.com/tesseract-ocr/tessdata_best/raw/master/eng.traineddata /usr/share/tesseract-ocr/4.00/tessdata/eng.traineddata
+ADD https://github.com/tesseract-ocr/tessdata_best/raw/master/deu.traineddata /usr/share/tesseract-ocr/4.00/tessdata/deu.traineddata
+ADD https://github.com/tesseract-ocr/tessdata_best/raw/master/frk.traineddata /usr/share/tesseract-ocr/4.00/tessdata/frk.traineddata
 
 RUN \
   apt-get install -y curl \
